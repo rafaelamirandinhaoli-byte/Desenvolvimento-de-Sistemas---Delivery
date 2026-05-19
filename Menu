@@ -1,0 +1,125 @@
+def menu():
+    while True:
+        print("\n===== SISTEMA DELIVERY =====")
+        print("1 - Cliente")
+        print("2 - Estabelecimento")
+        print("3 - Entregador")
+        print("4 - Pedido")
+        print("0 - Sair")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            menu_cliente()
+
+        elif opcao == "2":
+            menu_estabelecimento()
+
+        elif opcao == "3":
+            menu_entregador()
+
+        elif opcao == "4":
+            menu_pedido()
+
+        elif opcao == "0":
+            print("Sistema encerrado.")
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+def menu_cliente():
+    while True:
+        print("\n--- MENU CLIENTE ---")
+        print("1 - Cadastrar cliente")
+        print("2 - Listar clientes")
+        print("0 - Voltar")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            print("Cliente cadastrado!")
+
+        elif opcao == "2":
+            print("Listando clientes...")
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+def menu_estabelecimento():
+    while True:
+        print("\n--- MENU ESTABELECIMENTO ---")
+        print("1 - Cadastrar estabelecimento")
+        print("2 - Ver cardápio")
+        print("0 - Voltar")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            print("Estabelecimento cadastrado!")
+
+        elif opcao == "2":
+            print("Exibindo cardápio...")
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+def menu_entregador():
+    while True:
+        print("\n--- MENU ENTREGADOR ---")
+        print("1 - Cadastrar entregador")
+        print("2 - Ver entregas")
+        print("0 - Voltar")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            print("Entregador cadastrado!")
+
+        elif opcao == "2":
+            print("Listando entregas...")
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+def menu_pedido():
+    while True:
+        print("\n--- MENU PEDIDO ---")
+        print("1 - Criar pedido")
+        print("2 - Listar pedidos")
+        print("3 - Finalizar pedido")
+        print("0 - Voltar")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            print("Pedido criado!")
+
+        elif opcao == "2":
+            print("Listando pedidos...")
+
+        elif opcao == "3":
+            print("Pedido finalizado!")
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+# Iniciar sistema
+menu()
