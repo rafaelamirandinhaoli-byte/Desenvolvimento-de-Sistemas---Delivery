@@ -1,0 +1,250 @@
+# =========================
+# OBJETOS DO SISTEMA
+# =========================
+
+clientes = []
+estabelecimentos = []
+entregadores = []
+pedidos = []
+
+
+# =========================
+# CLASSES
+# =========================
+
+class Cliente:
+    def __init__(self, nome, telefone):
+        self.nome = nome
+        self.telefone = telefone
+
+    def __str__(self):
+        return f"{self.nome} - {self.telefone}"
+
+
+class Estabelecimento:
+    def __init__(self, nome, categoria):
+        self.nome = nome
+        self.categoria = categoria
+
+    def __str__(self):
+        return f"{self.nome} ({self.categoria})"
+
+
+class Entregador:
+    def __init__(self, nome, veiculo):
+        self.nome = nome
+        self.veiculo = veiculo
+
+    def __str__(self):
+        return f"{self.nome} - {self.veiculo}"
+
+
+class Pedido:
+    def __init__(self, cliente, estabelecimento):
+        self.cliente = cliente
+        self.estabelecimento = estabelecimento
+        self.status = "Em preparo"
+
+    def __str__(self):
+        return (
+            f"Cliente: {self.cliente.nome} | "
+            f"Loja: {self.estabelecimento.nome} | "
+            f"Status: {self.status}"
+        )
+
+
+# =========================
+# MENU CLIENTE
+# =========================
+
+def menu_cliente():
+    while True:
+        print("\n--- MENU CLIENTE ---")
+        print("1 - Cadastrar cliente")
+        print("2 - Listar clientes")
+        print("0 - Voltar")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            nome = input("Nome: ")
+            telefone = input("Telefone: ")
+
+            cliente = Cliente(nome, telefone)
+            clientes.append(cliente)
+
+            print("Cliente cadastrado!")
+
+        elif opcao == "2":
+            print("\nLISTA DE CLIENTES")
+
+            for cliente in clientes:
+                print(cliente)
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+# =========================
+# MENU ESTABELECIMENTO
+# =========================
+
+def menu_estabelecimento():
+    while True:
+        print("\n--- MENU ESTABELECIMENTO ---")
+        print("1 - Cadastrar estabelecimento")
+        print("2 - Listar estabelecimentos")
+        print("0 - Voltar")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            nome = input("Nome: ")
+            categoria = input("Categoria: ")
+
+            est = Estabelecimento(nome, categoria)
+            estabelecimentos.append(est)
+
+            print("Estabelecimento cadastrado!")
+
+        elif opcao == "2":
+            print("\nLISTA DE ESTABELECIMENTOS")
+
+            for est in estabelecimentos:
+                print(est)
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+# =========================
+# MENU ENTREGADOR
+# =========================
+
+def menu_entregador():
+    while True:
+        print("\n--- MENU ENTREGADOR ---")
+        print("1 - Cadastrar entregador")
+        print("2 - Listar entregadores")
+        print("0 - Voltar")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            nome = input("Nome: ")
+            veiculo = input("Veículo: ")
+
+            entregador = Entregador(nome, veiculo)
+            entregadores.append(entregador)
+
+            print("Entregador cadastrado!")
+
+        elif opcao == "2":
+            print("\nLISTA DE ENTREGADORES")
+
+            for entregador in entregadores:
+                print(entregador)
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+# =========================
+# MENU PEDIDO
+# =========================
+
+def menu_pedido():
+    while True:
+        print("\n--- MENU PEDIDO ---")
+        print("1 - Criar pedido")
+        print("2 - Listar pedidos")
+        print("0 - Voltar")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+
+            if len(clientes) == 0 or len(estabelecimentos) == 0:
+                print("Cadastre clientes e estabelecimentos primeiro!")
+                continue
+
+            print("\nClientes:")
+            for i, cliente in enumerate(clientes):
+                print(f"{i} - {cliente}")
+
+            indice_cliente = int(input("Escolha o cliente: "))
+
+            print("\nEstabelecimentos:")
+            for i, est in enumerate(estabelecimentos):
+                print(f"{i} - {est}")
+
+            indice_est = int(input("Escolha o estabelecimento: "))
+
+            pedido = Pedido(
+                clientes[indice_cliente],
+                estabelecimentos[indice_est]
+            )
+
+            pedidos.append(pedido)
+
+            print("Pedido criado!")
+
+        elif opcao == "2":
+            print("\nLISTA DE PEDIDOS")
+
+            for pedido in pedidos:
+                print(pedido)
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+# =========================
+# MENU PRINCIPAL
+# =========================
+
+def menu():
+    while True:
+        print("\n===== DELIVERY =====")
+        print("1 - Cliente")
+        print("2 - Estabelecimento")
+        print("3 - Entregador")
+        print("4 - Pedido")
+        print("0 - Sair")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            menu_cliente()
+
+        elif opcao == "2":
+            menu_estabelecimento()
+
+        elif opcao == "3":
+            menu_entregador()
+
+        elif opcao == "4":
+            menu_pedido()
+
+        elif opcao == "0":
+            print("Sistema encerrado.")
+            break
+
+        else:
+            print("Opção inválida!")
+
+
+# EXECUTAR
+menu()
