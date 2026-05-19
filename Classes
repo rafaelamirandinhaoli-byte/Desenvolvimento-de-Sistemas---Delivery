@@ -1,0 +1,76 @@
+from datetime import datetime
+
+
+class Cliente:
+    def __init__(self, nome, telefone, endereco):
+        self.nome = nome
+        self.telefone = telefone
+        self.endereco = endereco
+
+    def exibir_dados(self):
+        print(f"Cliente: {self.nome}")
+        print(f"Telefone: {self.telefone}")
+        print(f"Endereço: {self.endereco}")
+
+
+class Estabelecimento:
+    def __init__(self, nome, categoria):
+        self.nome = nome
+        self.categoria = categoria
+        self.cardapio = []
+
+    def adicionar_item_cardapio(self, item):
+        self.cardapio.append(item)
+
+    def exibir_cardapio(self):
+        print(f"\nCardápio de {self.nome}")
+        for item in self.cardapio:
+            print(f"- {item}")
+
+
+class Entregador:
+    def __init__(self, nome, veiculo):
+        self.nome = nome
+        self.veiculo = veiculo
+        self.disponivel = True
+
+    def aceitar_entrega(self):
+        self.disponivel = False
+
+    def finalizar_entrega(self):
+        self.disponivel = True
+
+
+class Pedido:
+    def __init__(self, cliente, estabelecimento):
+        self.cliente = cliente
+        self.estabelecimento = estabelecimento
+        self.itens = []
+        self.status = "Em preparo"
+        self.data = datetime.now()
+        self.entregador = None
+
+    def adicionar_item(self, item):
+        self.itens.append(item)
+
+    def atribuir_entregador(self, entregador):
+        self.entregador = entregador
+        entregador.aceitar_entrega()
+        self.status = "Saiu para entrega"
+
+    def finalizar_pedido(self):
+        self.status = "Entregue"
+
+        if self.entregador:
+            self.entregador.finalizar_entrega()
+
+    def resumo(self):
+        print("\n===== RESUMO DO PEDIDO =====")
+        print(f"Cliente: {self.cliente.nome}")
+        print(f"Estabelecimento: {self.estabelecimento.nome}")
+        print(f"Itens: {', '.join(self.itens)}")
+        print(f"Status: {self.status}")
+        print(f"Data: {self.data.strftime('%d/%m/%Y %H:%M')}")
+
+        if self.entregador:
+            print(f"Entregador: {self.entregador.nome}")
